@@ -1,0 +1,73 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-color: #FFFFFF;
+  --text-color: #323238;
+  --button-bg-color: #E1E1E6;
+  --button-bg-hover-color: #02799D;
+
+  font-size: 62.5%;
+}
+
+body {
+  color: var(--text-color);
+  font-family: 'Roboto', sans-serif;
+
+  display: flex;
+  gap: clamp(10rem, 15rem, 19rem);
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+#timer-box {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+
+  width: 32.1rem;
+}
+
+#timer {
+  font-size: 12.6rem;
+  line-height: 148px;
+  font-weight: 500;
+}
+
+#controls {
+  display: flex;
+  gap: 4rem;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+
+  cursor: pointer;
+}
+
+.hide {
+  display: none;
+}
+
+#audio-box {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3.2rem;
+}
+
+#audio-box button {
+  width: 13.8rem;
+  height: 15.2rem;
+  border-radius: 24px;
+  background-color: var(--button-bg-color);
+  transition: background-color 0.3s;
+}
+
+#audio-box button:hover {
+  background-color: #b8b8b8;
+}
