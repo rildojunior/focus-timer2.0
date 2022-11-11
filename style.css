@@ -43,6 +43,14 @@ body {
   gap: 4rem;
 }
 
+#controls button {
+  transition: transform .2s
+}
+
+#controls button:hover {
+  transform: scale(1.05);
+}
+
 button {
   background-color: transparent;
   border: none;
