@@ -5,10 +5,11 @@
 }
 
 :root {
-  --bg-color: #FFFFFF;
+  --bg-color: #ffffff;
   --text-color: #323238;
-  --button-bg-color: #E1E1E6;
-  --button-bg-hover-color: #02799D;
+  --button-bg-color: #e1e1e6;
+  --button-bg-hover-color: #b8b8b8;
+  --button-bg-focus-color: #02799d;
 
   font-size: 62.5%;
 }
@@ -44,7 +45,7 @@ body {
 }
 
 #controls button {
-  transition: transform .2s
+  transition: transform 0.2s;
 }
 
 #controls button:hover {
@@ -77,5 +78,5 @@ button {
 }
 
 #audio-box button:hover {
-  background-color: #b8b8b8;
+  background-color: var(--button-bg-hover-color);
 }

@@ -1,16 +1,26 @@
-const buttonPlay = document.querySelector('.play')
-const buttonPause = document.querySelector('.pause')
-const buttonStop = document.querySelector('.stop')
-const buttonPlus = document.querySelector('.plus')
-const buttonMinus = document.querySelector('.minus')
-const minutesDisplay = document.querySelector('.minutes')
-const secondsDisplay = document.querySelector('.seconds')
+import { CoffeAudio, RainAudio, ForestAudio, CampFireAudio } from './sounds.js'
+
+import {
+  buttonPlay,
+  buttonPause,
+  buttonStop,
+  buttonPlus,
+  buttonMinus,
+  minutesDisplay,
+  secondsDisplay,
+  buttonTree,
+  buttonCloud,
+  buttonMarket,
+  buttonFire
+} from './elements.js'
+
 let minutes = Number(minutesDisplay.textContent)
 let timerTimeOut
 
 function resetControls() {
   buttonPause.classList.add('hide')
   buttonPlay.classList.remove('hide')
+  resetTimer()
 }
 
 function updateTimerDisplay(minutes, seconds) {
@@ -27,16 +37,17 @@ function countdown() {
   timerTimeOut = setTimeout(function () {
     let seconds = Number(secondsDisplay.textContent)
     let minutes = Number(minutesDisplay.textContent)
+    let isFinished = minutes <= 0 && seconds == 0
 
     updateTimerDisplay(minutes, 0)
 
-    if (minutes <= 0 && seconds == 0) {
+    if (isFinished) {
       resetControls()
       return
     }
 
     if (seconds <= 0) {
-      seconds = 60
+      seconds = 2
       --minutes
     }
 
@@ -44,6 +55,20 @@ function countdown() {
 
     countdown()
   }, 1000)
+}
+
+function togglePlay(audio) {
+  return audio.paused ? audio.play() : audio.pause()
+}
+
+function toggleButtonState(button) {
+  if (button.value == 'on') {
+    button.value = 'off'
+    button.style.backgroundColor = '#e1e1e6'
+  } else if (button.value == 'off') {
+    button.value = 'on'
+    button.style.backgroundColor = '#02799d'
+  }
 }
 
 buttonPlay.addEventListener('click', () => {
@@ -66,7 +91,7 @@ buttonStop.addEventListener('click', () => {
 
 buttonPlus.addEventListener('click', () => {
   minutes = minutes + 5
-  updateTimerDisplay(minutes, 0)
+  minutesDisplay.textContent = String(minutes).padStart(2, '0')
 })
 
 buttonMinus.addEventListener('click', () => {
@@ -77,5 +102,25 @@ buttonMinus.addEventListener('click', () => {
   }
 
   minutes = newMinutes
-  updateTimerDisplay(minutes, 0)
+  minutesDisplay.textContent = String(minutes).padStart(2, '0')
+})
+
+buttonTree.addEventListener('click', () => {
+  toggleButtonState(buttonTree)
+  togglePlay(ForestAudio)
+})
+
+buttonCloud.addEventListener('click', () => {
+  toggleButtonState(buttonCloud)
+  togglePlay(RainAudio)
+})
+
+buttonMarket.addEventListener('click', () => {
+  toggleButtonState(buttonMarket)
+  togglePlay(CoffeAudio)
+})
+
+buttonFire.addEventListener('click', () => {
+  toggleButtonState(buttonFire)
+  togglePlay(CampFireAudio)
 })
